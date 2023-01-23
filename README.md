@@ -1,6 +1,9 @@
 # ENDOOM lump parser in Godot
 
-Displays a [ENDOOM lump](https://doomwiki.org/wiki/ENDOOM) in a RichTextLabel node in Godot 4.
+Displays a [ENDOOM lump](https://doomwiki.org/wiki/ENDOOM) in a RichTextLabel node in Godot 4
+(either using `push_*` functions, or by generating BBCode).
+If using BBCode, it can be printed to the console using `print_rich()`
+(which is then translated to ANSI escape sequences in stdout).
 
 **Note:** Not compatible with Godot 3.x.
 
