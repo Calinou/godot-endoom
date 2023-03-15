@@ -8,10 +8,14 @@ extends RichTextLabel
 # Not compatible with console output.
 @export var use_bbcode_exact_colors := false
 
+# Also print to console (only effective if Use BBCode is enabled).
+@export var print_to_console := false
+
 
 func _ready() -> void:
 	var file := FileAccess.open("res://endoom/doom1.lmp", FileAccess.READ)
 	# Used with BBCode to prevent parsing BBCode on every concatenation.
+	var begin := Time.get_ticks_usec()
 	var text_buffer := ""
 
 	for byte_idx in range(2, file.get_length(), 2):
@@ -137,4 +141,10 @@ func _ready() -> void:
 		# This will not display correctly in the editor; only in the console output.
 		# As an alternative, spaces can be used here, but they would require generating
 		# a separate text of BBCode text for console output (compared to display within the RichTextLabel).
-		print_rich(text.replace(String.chr(0xdb), "█"))
+		if print_to_console:
+			print_rich(text.replace(String.chr(0xdb), "█"))
+
+	var end := Time.get_ticks_usec()
+	print_rich("Using BBCode: [b]%s[/b]" % ("Yes" if use_bbcode else "No"))
+	print_rich("Using BBCode exact colors: [b]%s[/b]" % ("Yes" if use_bbcode_exact_colors else "No"))
+	print_rich("Time taken to render BBCode: [b]%d microseconds[/b]" % (end - begin))

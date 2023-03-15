@@ -23,10 +23,6 @@ window/size/window_height_override=800
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[editor]
-
-export/convert_text_resources_to_binary=true
-
 [rendering]
 
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
